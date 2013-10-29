@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
 using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DatSub
 {
@@ -21,8 +18,14 @@ namespace DatSub
             WebClient wClient = new WebClient();
             wClient.Headers.Add("user-agent", "SubDB/1.0 (Figa/0.1; http://github.com/figa12/DatSub)");
 
-            wClient.DownloadFile("http://api.thesubdb.com/?action=download&hash=" + getHash(filename) + "&language=en", Path.GetDirectoryName(filename)+Path.GetFileNameWithoutExtension(filename)+".srt");
-
+            try
+            {
+                wClient.DownloadFile("http://api.thesubdb.com/?action=download&hash=" + getHash(filename) + "&language=en", Path.Combine(Path.GetDirectoryName(filename), Path.GetFileNameWithoutExtension(filename)) + ".srt");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("No subtitle exists for this file.");
+            }
         }
 
         public static string getHash(string name)
