@@ -1,7 +1,7 @@
 DatSub
 ======
 
-One-click subtitle downloader for Windows.
+Subtitle downloader for Windows.
 Will add an option to the windows context menu.
 
 Usage
