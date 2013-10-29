@@ -13,7 +13,7 @@
 Name "DatSub Installer"
 
 ; The file to write
-OutFile "DatSub Setup.exe"
+OutFile "Setup.exe"
 
 ; The default installation directory
 InstallDir $PROGRAMFILES\DatSub
