@@ -25,6 +25,7 @@ namespace DatSub
             catch (Exception e)
             {
                 Console.WriteLine("No subtitle exists for this file.");
+                System.Threading.Thread.Sleep(2500);
             }
         }
 
