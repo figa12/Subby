@@ -14,16 +14,19 @@ namespace DatSub
         {
 
             string filename = Path.GetFullPath(args[0]);
+            
 
             WebClient wClient = new WebClient();
             wClient.Headers.Add("user-agent", "SubDB/1.0 (Figa/0.1; http://github.com/figa12/DatSub)");
 
             try
             {
+                Console.WriteLine("Downloading subtitle...");
                 wClient.DownloadFile("http://api.thesubdb.com/?action=download&hash=" + getHash(filename) + "&language=en", Path.Combine(Path.GetDirectoryName(filename), Path.GetFileNameWithoutExtension(filename)) + ".srt");
             }
             catch (Exception e)
             {
+                Console.Clear();
                 Console.WriteLine("No subtitle exists for this file.");
                 System.Threading.Thread.Sleep(2500);
             }
