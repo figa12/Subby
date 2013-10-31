@@ -13,7 +13,7 @@ namespace DatSub
         static void Main(string[] args)
         {
 
-            string filename = args[0];
+            string filename = Path.GetFullPath(args[0]);
 
             WebClient wClient = new WebClient();
             wClient.Headers.Add("user-agent", "SubDB/1.0 (Figa/0.1; http://github.com/figa12/DatSub)");
