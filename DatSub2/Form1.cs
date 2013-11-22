@@ -35,13 +35,14 @@ namespace Subby
             notifyIcon1.Text = "DatSub";
 
             WebClient wClient = new WebClient();
-            wClient.DownloadFileCompleted += new AsyncCompletedEventHandler(FileDownloadCompleted);
             wClient.Headers.Add("user-agent", "SubDB/1.0 (Figa/0.1; http://github.com/figa12/DatSub)");
 
             try
             {
                 notifyIcon1.ShowBalloonTip(1000, "Subby", "Downloading subtitle...", ToolTipIcon.Info);
-                wClient.DownloadFileAsync(new Uri("http://api.thesubdb.com/?action=download&hash=" + this.GetHash(filename) + "&language=en"), Path.Combine(Path.GetDirectoryName(filename), Path.GetFileNameWithoutExtension(filename)) + ".srt");
+                wClient.DownloadFile(new Uri("http://api.thesubdb.com/?action=download&hash=" + this.GetHash(filename) + "&language=en"), Path.Combine(Path.GetDirectoryName(filename), Path.GetFileNameWithoutExtension(filename)) + ".srt");
+                this.Close();
+                Environment.Exit(1);
             }
             catch (Exception e)
             {
@@ -105,12 +106,6 @@ namespace Subby
         protected override void SetVisibleCore(bool value)
         {
             base.SetVisibleCore(allowshowdisplay ? value : allowshowdisplay);
-        }
-
-        private void FileDownloadCompleted(object sender, AsyncCompletedEventArgs e)
-        {
-            this.Close();
-            Environment.Exit(1);
         }
     }
 }
