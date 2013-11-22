@@ -7,16 +7,16 @@
 
 ;--------------------------------
 
-!define APP_NAME "DatSub"
+!define APP_NAME "Subby"
 
 ; The name of the installer
-Name "DatSub Installer"
+Name "Subby Installer"
 
 ; The file to write
 OutFile "Setup.exe"
 
 ; The default installation directory
-InstallDir $PROGRAMFILES\DatSub
+InstallDir $PROGRAMFILES\Subby
 
 ; Request application privileges for Windows Vista
 RequestExecutionLevel user
@@ -37,12 +37,16 @@ Section "" ;No components page, name is not important
   SetOutPath $INSTDIR
   
   ; Put file there
-  File DatSub.exe
+  File Subby.exe
   
   ;write uninstall information to the registry
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${APP_NAME}" "DisplayName" "${APP_NAME} (remove only)"
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${APP_NAME}" "UninstallString" "$INSTDIR\Uninstall.exe"
   WriteRegStr HKCR "*\shell\${APP_NAME}\command\" "" "$INSTDIR\${APP_NAME}.exe %1"
+  
+  ;Delete old entries (from older version, before name change)
+  DeleteRegKey HKEY_LOCAL_MACHINE "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\DatSub"
+  DeleteRegKey HKEY_CLASSES_ROOT "*\shell\DatSub"
  
   WriteUninstaller "$INSTDIR\Uninstall.exe"
   
@@ -62,6 +66,9 @@ Section "Uninstall"
 ;Delete Uninstaller And Unistall Registry Entries
   DeleteRegKey HKEY_LOCAL_MACHINE "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\${APP_NAME}"
   DeleteRegKey HKEY_CLASSES_ROOT "*\shell\${APP_NAME}"
+;Delete old entries (from older version, before name change)
+  DeleteRegKey HKEY_LOCAL_MACHINE "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\DatSub"
+  DeleteRegKey HKEY_CLASSES_ROOT "*\shell\DatSub"
  
 SectionEnd
  
