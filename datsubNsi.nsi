@@ -19,7 +19,7 @@ OutFile "Setup.exe"
 InstallDir $PROGRAMFILES\Subby
 
 ; Request application privileges for Windows Vista
-RequestExecutionLevel user
+RequestExecutionLevel admin
 
 ;--------------------------------
 
