@@ -102,7 +102,7 @@ namespace Subby
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Process.Start("http://figa12.github.io/datsub/");
+            Process.Start("http://figa12.github.io/Subby/");
             this.Close();
         }
 
