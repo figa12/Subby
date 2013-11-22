@@ -41,8 +41,11 @@ namespace Subby
             {
                 notifyIcon1.ShowBalloonTip(1000, "Subby", "Downloading subtitle...", ToolTipIcon.Info);
                 wClient.DownloadFile(new Uri("http://api.thesubdb.com/?action=download&hash=" + this.GetHash(filename) + "&language=en"), Path.Combine(Path.GetDirectoryName(filename), Path.GetFileNameWithoutExtension(filename)) + ".srt");
-                this.Close();
-                Environment.Exit(1);
+                if (this.updateAvailable == false)
+                {
+                    this.Close();
+                    Environment.Exit(1);
+                }
             }
             catch (Exception e)
             {
