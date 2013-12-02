@@ -8,6 +8,7 @@ namespace Subby
     using System.Diagnostics;
     using System.IO;
     using System.Net;
+    using System.Reflection;
     using System.Security.Cryptography;
     using System.Text.RegularExpressions;
 
@@ -30,9 +31,11 @@ namespace Subby
 
             string filename = Path.GetFullPath(args[0]);
 
-            notifyIcon1.Icon = new System.Drawing.Icon(@"c:\datsubico.ico");
+            var path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+
+            notifyIcon1.Icon = new System.Drawing.Icon(path + "\\subby.ico");
             notifyIcon1.Visible = true;
-            notifyIcon1.Text = "DatSub";
+            notifyIcon1.Text = "Subby";
 
             WebClient wClient = new WebClient();
             wClient.Headers.Add("user-agent", "SubDB/1.0 (Figa/0.1; http://github.com/figa12/DatSub)");
