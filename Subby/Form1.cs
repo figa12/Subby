@@ -42,7 +42,7 @@ namespace Subby
             path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
 
             #if DEBUG
-            args = new string[] { @"E:\Serier\The.Fosters.2013.S03E12.HDTV.x264-KILLERS[ettv]\The.Fosters.2013.S03E12.HDTV.x264-KILLERS[ettv].mp4" };
+            args = new string[] { @"C:\breakdance.avi" };
             path = @"C:\Projects\Subby";
             #endif
 
